@@ -66,9 +66,14 @@ export const Bonus = memo(({ bonusWithVolunteers }: IBonusProps) => {
             {bonusWithVolunteers.bonus.organization_name}
           </div>
           <Chip
+            label={`Выдан в: ${bonusWithVolunteers.assignments[0].historyItem.created_at}`}
+            size="small"
+            color="default"
+          />
+          <Chip
             label={`Общее число назначений: ${bonusWithVolunteers.assignments.length}`}
             size="small"
-            color="info"
+            color="default"
           />
           <Chip
             label={`Количество активных бонусов: ${amountOfActiveBonuses}`}
