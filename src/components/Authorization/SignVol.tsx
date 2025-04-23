@@ -61,7 +61,7 @@ const Sign: React.FC<SignProps> = (props) => {
       errors.email = true;
     } else if (birth_date == null) {
       errors.birth_date = true;
-    } else if (password == null) {
+    } else if ( parseInt(password) = false ) {
       errors.password = true;
     } else {
     }
