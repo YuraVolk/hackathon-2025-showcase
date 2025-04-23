@@ -14,7 +14,7 @@ import customParseFormat from "dayjs/plugin/customParseFormat";
 import { Typography } from "@mui/material";
 dayjs.extend(customParseFormat);
 
-const PartnersDashboard = () => {
+const VolunteersPage = () => {
   const [achievements, setAchievements] = useState<string[]>([]);
   const [sorting, setSorting] = useState(Sorting.ByAchievementsAscending);
   const [minBirthDate, setMinBirthDate] = useState<Dayjs | null>(null);
@@ -113,4 +113,4 @@ const PartnersDashboard = () => {
   );
 };
 
-export default PartnersDashboard;
+export default VolunteersPage;
