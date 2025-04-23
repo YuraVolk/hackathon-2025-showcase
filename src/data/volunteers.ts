@@ -163,6 +163,43 @@ export const VOLUNTEERS: IVolunteer[] =
         email,
         birth_date,
         achievements,
-        history: [],
+        history: [
+          {
+            id: 5,
+            is_used: false,
+            volunteer_id: 5,
+            created_at: "01.01.25",
+            bonus: {
+              id: "6",
+              organization_name: "Тестовая организация",
+              name: "Бонус",
+              description: "Мощный бонус",
+            },
+          },
+          {
+            id: 6,
+            is_used: false,
+            volunteer_id: 5,
+            created_at: "01.01.25",
+            bonus: {
+              id: "7",
+              organization_name: "Тестовая организация",
+              name: "Бонус",
+              description: "Мощный бонус",
+            },
+          },
+          {
+            id: 7,
+            is_used: true,
+            volunteer_id: 5,
+            created_at: "01.01.25",
+            bonus: {
+              id: "8",
+              organization_name: "Тестовая организация",
+              name: "Бонус",
+              description: "Мощный бонус",
+            },
+          },
+        ],
       };
     });

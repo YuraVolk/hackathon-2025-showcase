@@ -11,6 +11,7 @@ import { useMemo, useState } from "react";
 import { Sorting } from "@/data/filters";
 import dayjs, { Dayjs } from "dayjs";
 import customParseFormat from "dayjs/plugin/customParseFormat";
+import { Typography } from "@mui/material";
 dayjs.extend(customParseFormat);
 
 const PartnersDashboard = () => {
@@ -89,6 +90,7 @@ const PartnersDashboard = () => {
         ],
       }}
     >
+      <Typography variant="h4" component="h1">Список волонтеров</Typography>
       <Filters
         achievementTypes={achievementTypes}
         achievements={achievements}
@@ -102,7 +104,7 @@ const PartnersDashboard = () => {
       />
       <ul className={styles.volunteers}>
         {filteredVolunteers.map((volunteer) => (
-          <li>
+          <li key={volunteer.id}>
             <Volunteer volunteer={volunteer} />
           </li>
         ))}

@@ -65,12 +65,14 @@ export const Filters = memo(
         />
         <div className={classes.filters_row}>
           <DatePicker
+            slotProps={{ field: { clearable: true } }}
             className={classes.filters_input}
             label="Минимальная дата рождения"
             value={minBirthDate}
             onChange={(newValue) => setMinBirthDate(newValue)}
           />
           <DatePicker
+            slotProps={{ field: { clearable: true } }}
             className={classes.filters_input}
             label="Максимальная дата рождения"
             value={maxBirthDate}
