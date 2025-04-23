@@ -86,7 +86,7 @@ export const Bonus = memo(({ bonusWithVolunteers }: IBonusProps) => {
         </h4>
         <div className={classes.volunteers_list}>
           {bonusWithVolunteers.assignments.map((assignment) => (
-            <div key={assignment.historyItem.id} className={classes.volunteer}>
+            <div key={assignment.volunteer.id} className={classes.volunteer}>
               <Image
                 className={classes.volunteer_image}
                 src={emptyAvatarSrc}

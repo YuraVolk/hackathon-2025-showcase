@@ -1,13 +1,15 @@
 import { Layout } from "@/components/Layout/Layout";
-import { Typography } from "@mui/material";
+import { Button, Typography } from "@mui/material";
+import AddIcon from "@mui/icons-material/Add";
 
 import styles from "./styles.module.css";
 import logoIcon from "../../assets/icons/logo.svg";
 import Image from "next/image";
 import { IVolunteer, IBonus, IBonusHistoryItem } from "@/models/volunteer";
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import { VOLUNTEERS } from "@/data/volunteers";
 import { Bonus } from "@/components/Bonus/Bonus";
+import { AddBonusModal } from "@/components/AddBonusModal/AddBonusModal";
 
 const transformVolunteersToBonuses = (
   volunteers: IVolunteer[]
@@ -51,6 +53,7 @@ const transformVolunteersToBonuses = (
 };
 
 const VolunteersPage = () => {
+  const [isAddBonusModalOpen, setAddBonusModalOpen] = useState(false);
   const filteredBonuses = useMemo(
     () => transformVolunteersToBonuses(VOLUNTEERS),
     []
@@ -91,16 +94,35 @@ const VolunteersPage = () => {
         ],
       }}
     >
-      <Typography variant="h4" component="h1">
+      <Typography variant="h4" component="h1" className={styles.bonuses_title}>
         История выданных бонусов
       </Typography>
+      <Button
+        component="label"
+        role={undefined}
+        variant="contained"
+        tabIndex={-1}
+        startIcon={<AddIcon />}
+        onClick={() => {
+          setAddBonusModalOpen(true);
+        }}
+      >
+        Создать новый тип бонусов
+      </Button>
       <ul className={styles.bonuses}>
         {filteredBonuses.map((bonus) => (
           <li key={bonus.bonus.id}>
-            <Bonus key={bonus.bonus.id} bonusWithVolunteers={bonus} />
+            <Bonus bonusWithVolunteers={bonus} />
           </li>
         ))}
       </ul>
+      <AddBonusModal
+        open={isAddBonusModalOpen}
+        volunteers={VOLUNTEERS}
+        onClose={() => {
+          setAddBonusModalOpen(false);
+        }}
+      />
     </Layout>
   );
 };
