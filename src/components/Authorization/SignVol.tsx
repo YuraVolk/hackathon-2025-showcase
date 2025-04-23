@@ -25,46 +25,36 @@ const Sign: React.FC<SignProps> = (props) => {
     birth_date: false,
     password: false,
   });
-  class Vol {
-    private fio: string;
-    private inn: string;
-    private phone_number: string;
-    private email: string;
-    private birth_date: string;
-    private password: number;
 
-    constructor(
-      fio: string,
-      inn: string,
-      phone_number: string,
-      email: string,
-      birth_date: string,
-      password: number
-    ) {
-      this.fio = fio;
-      this.inn = inn;
-      this.phone_number = phone_number;
-      this.email = email;
-      this.birth_date = birth_date;
-      this.password = password;
+  const send = (
+    fio: string,
+    inn: string,
+    phone_number: string,
+    email: string,
+    birth_date: string,
+    password: string
+  ) => {
+    const newErrors = { ...errors };
+    if (fio == "") {
+      newErrors.fio = true;
     }
-  }
+    if (inn == "") {
+      newErrors.inn = true;
+    }
+    if (phone_number == "") {
+      newErrors.phone_number = true;
+    }
+    if (email == "") {
+      newErrors.email = true;
+    }
+    if (birth_date == "") {
+      newErrors.birth_date = true;
+    }
+    if (isNaN(Number(password))) {
+      newErrors.password = true;
+    }
 
-  const send = () => {
-    if (fio == null) {
-      errors.fio = true;
-    } else if (inn == null) {
-      errors.inn = true;
-    } else if (phone_number == null) {
-      errors.phone_number = true;
-    } else if (email == null) {
-      errors.email = true;
-    } else if (birth_date == null) {
-      errors.birth_date = true;
-    } else if ( parseInt(password) = false ) {
-      errors.password = true;
-    } else {
-    }
+    setErrors(newErrors);
   };
 
   return (
@@ -81,7 +71,15 @@ const Sign: React.FC<SignProps> = (props) => {
           label="ФИО"
           variant="filled"
           value={fio}
-          onChange={(e) => setFio(e.currentTarget.value)}
+          onChange={(e) => {
+            setFio(e.currentTarget.value);
+            setErrors({    fio: false,
+              inn: false,
+              phone_number: false,
+              email: false,
+              birth_date: false,
+              password: false, })
+          }}
         />
         <TextField
           fullWidth
@@ -149,7 +147,9 @@ const Sign: React.FC<SignProps> = (props) => {
             errors.phone_number
           }
           color="secondary"
-          onClick={send}
+          onClick={() => {
+            send(fio, inn, phone_number, email, birth_date, password);
+          }}
           variant="contained"
         >
           Зарегистрироваться
