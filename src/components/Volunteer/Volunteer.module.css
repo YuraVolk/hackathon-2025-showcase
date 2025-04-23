@@ -1,0 +1,93 @@
+.volunteer {
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(#fff, #f6f6f6) !important;
+  border-radius: 16px !important;
+  box-shadow: 3px 6px 4px -5px rgba(0, 0, 0, 0.25);
+  gap: 12px;
+}
+
+.volunteer_summary {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0;
+  min-height: auto !important;
+}
+
+.volunteer_summary .MuiAccordionSummary-content {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0;
+}
+
+.volunteer_image {
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+  margin-right: 12px;
+}
+
+.volunteer_description {
+  flex: 1 1 0;
+}
+
+.volunteer_description_name {
+  display: block;
+  font-size: 16px;
+  line-height: 24px;
+  color: #2d2d2d;
+}
+
+.volunteer_description_name_highlighted {
+  opacity: 0.5;
+}
+
+.volunteer_description_achievements {
+  display: block;
+  font-size: 14px;
+  line-height: 18px;
+  color: #2d2d2d;
+}
+
+.volunteer_details {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 0 0 0 60px;
+}
+
+.volunteer_info_item {
+  display: flex;
+  gap: 8px;
+}
+
+.volunteer_info_item span:first-child {
+  font-weight: bold;
+}
+
+.volunteer_bonuses {
+  margin-top: 12px;
+}
+
+.volunteer_bonuses h4 {
+  margin: 8px 0;
+}
+
+.volunteer_bonus_item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.volunteer_bonus_info {
+  display: flex;
+  gap: 12px;
+}
+
+.volunteer_bonus_info span:first-child {
+  font-weight: bold;
+}
