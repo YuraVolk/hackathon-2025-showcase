@@ -1,0 +1,74 @@
+.volunteer {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: linear-gradient(#fff, #f6f6f6);
+  padding: 12px 24px;
+  border-radius: 8px;
+  box-shadow: 3px 6px 4px -5px rgba(0, 0, 0, 0.25);
+}
+
+.volunteer_image {
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+}
+
+.volunteer_wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex-grow: 1;
+}
+
+.volunteer_info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-grow: 1;
+}
+
+.volunteer_description {
+  flex: 1 1 0;
+}
+
+.volunteer_description_name {
+  display: block;
+  font-size: 16px;
+  line-height: 24px;
+  color: #2d2d2d;
+}
+
+.volunteer_description_name_highlighted {
+  opacity: 0.5;
+}
+
+.volunteer_description_achievements {
+  display: block;
+  font-size: 14px;
+  line-height: 18px;
+  color: #2d2d2d;
+}
+
+.volunteer_more_info_button {
+  display: block;
+  position: relative;
+  flex-shrink: 0;
+  appearance: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  background-color: transparent;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.volunteer_more_info_button > img {
+  transform: rotate(0deg);
+  transition: all 0.2s ease-in;
+}
+
+.volunteer_more_info_button:hover > img {
+  transform: rotate(180deg);
+}
