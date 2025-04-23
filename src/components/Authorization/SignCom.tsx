@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import Paper from "@mui/material/Paper";
-import { error } from "console";
 
 interface SignProps {
   num?: number;
@@ -30,24 +29,36 @@ const Sign: React.FC<SignProps> = (props) => {
   return (
     <Paper elevation={3} className="addVol">
       <form className="addVolForm">
-        <h2>Войти</h2>
-        <TextField className='email'
+        <h2>Зарегистрировать предприятие</h2>
+        <TextField
+          className="email"
+          fullWidth
           id="email"
-          label="Ваш логин"
+          label="Ваша почта"
           variant="filled"
           style={{ border: hasErr ? "1px solid red" : undefined }}
           value={email}
           onChange={(e) => setEmail(e.currentTarget.value)}
         />
-         <TextField className='input'
+        <TextField
+          className="input"
+          fullWidth
           id="password"
-          label="Ваш пароль"
+          label="Ваш код доступа"
           variant="filled"
           style={{ border: hasErr ? "1px solid red" : undefined }}
           value={password}
           onChange={(e) => setPassword(e.currentTarget.value)}
         />
-        <Button className='button'disabled={hasErr} color="secondary" onClick={handleSendPass} variant="contained">Зарегистрироваться</Button>
+        <Button
+          className="button"
+          disabled={hasErr}
+          color="secondary"
+          onClick={handleSendPass}
+          variant="contained"
+        >
+          Зарегистрироваться
+        </Button>
       </form>
     </Paper>
   );

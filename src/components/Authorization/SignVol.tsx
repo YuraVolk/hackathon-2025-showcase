@@ -1,8 +1,7 @@
 import React, { useState } from "react";
-import TextField, { textFieldClasses } from "@mui/material/TextField";
+import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import Paper from "@mui/material/Paper";
-import { error } from "console";
 
 interface SignProps {
   num?: number;
@@ -52,7 +51,6 @@ const Sign: React.FC<SignProps> = (props) => {
   }
 
   const send = () => {
-
     if (fio == null) {
       errors.fio = true;
     } else if (inn == null) {
@@ -66,7 +64,6 @@ const Sign: React.FC<SignProps> = (props) => {
     } else if (password == null) {
       errors.password = true;
     } else {
-
     }
   };
 
@@ -76,6 +73,7 @@ const Sign: React.FC<SignProps> = (props) => {
         <h2>Регистрация Волонтера</h2>
         <label htmlFor="fio"></label>
         <TextField
+          fullWidth
           className="input"
           error={errors.fio}
           helperText={errors.fio ? "Введите ваше ФИО" : ""}
@@ -86,6 +84,7 @@ const Sign: React.FC<SignProps> = (props) => {
           onChange={(e) => setFio(e.currentTarget.value)}
         />
         <TextField
+          fullWidth
           className="input"
           id="inn"
           label="ИНН"
@@ -96,6 +95,7 @@ const Sign: React.FC<SignProps> = (props) => {
           onChange={(e) => setInn(e.currentTarget.value)}
         />
         <TextField
+          fullWidth
           className="input"
           id="phone_number"
           label="Ваш номер телефона"
@@ -106,6 +106,7 @@ const Sign: React.FC<SignProps> = (props) => {
           onChange={(e) => setPhoneNumber(e.currentTarget.value)}
         />
         <TextField
+          fullWidth
           className="input"
           id="birth_date"
           label="Ваша дата рождения"
@@ -116,6 +117,7 @@ const Sign: React.FC<SignProps> = (props) => {
           onChange={(e) => setBirthDate(e.currentTarget.value)}
         />
         <TextField
+          fullWidth
           className="input"
           id="email"
           label="Ваша почта"
@@ -126,6 +128,7 @@ const Sign: React.FC<SignProps> = (props) => {
           onChange={(e) => setEmail(e.currentTarget.value)}
         />
         <TextField
+          fullWidth
           className="input"
           id="password"
           label="Ваш код доступа"
