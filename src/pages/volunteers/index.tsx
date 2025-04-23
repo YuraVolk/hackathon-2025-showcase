@@ -66,17 +66,11 @@ const VolunteersPage = () => {
           },
           {
             title: "Волонтеры",
-            url: "/partners-dashboard/",
-            childCategories: [
-              {
-                title: "Список бонусов",
-                url: "/partners-dashboard/bonuses/",
-              },
-              {
-                title: "Регистрация бонуса",
-                url: "/partners-dashboard/bonuses/new",
-              },
-            ],
+            url: "/volunteers/",
+          },
+          {
+            title: "Список бонусов",
+            url: "/bonus-list/",
           },
           {
             title: "Связаться с нами",
