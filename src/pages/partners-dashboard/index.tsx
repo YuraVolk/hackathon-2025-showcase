@@ -36,7 +36,7 @@ const PartnersDashboard = () => {
       />
       <ul className={styles.volunteers}>
         {VOLUNTEERS.map((volunteer) => (
-          <li>
+          <li key={volunteer.id}>
             <Volunteer volunteer={volunteer} />
           </li>
         ))}
