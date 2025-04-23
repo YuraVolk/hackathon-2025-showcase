@@ -21,5 +21,13 @@ export interface IVolunteer {
   email: string;
   birth_date: string;
   achievements: string;
+  unique_code: string;
   history: IBonusHistoryItem[];
+}
+
+export interface IOrganization {
+  id: string;
+  name: string;
+  description: string;
+  bonuses: IBonusHistoryItem[];
 }

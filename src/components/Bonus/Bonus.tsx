@@ -1,14 +1,18 @@
 import { memo, useMemo, useState } from "react";
 import Image from "next/image";
-import Accordion from "@mui/material/Accordion";
-import AccordionSummary from "@mui/material/AccordionSummary";
-import AccordionDetails from "@mui/material/AccordionDetails";
-import Chip from "@mui/material/Chip";
-
-import emptyAvatarSrc from "../../assets/icons/empty-avatar.svg";
-import arrowDownSrc from "../../assets/icons/icon-bottom.svg";
+import {
+  Accordion,
+  AccordionSummary,
+  Box,
+  Typography,
+  Stack,
+  Chip,
+  AccordionDetails,
+  Divider,
+} from "@mui/material";
+import emptyAvatarSrc from "@/assets/icons/empty-avatar.svg";
+import arrowDownSrc from "@/assets/icons/icon-bottom.svg";
 import classes from "./Bonus.module.css";
-
 import { IBonus, IBonusHistoryItem, IVolunteer } from "@/models/volunteer";
 
 export interface IBonusWithVolunteers {
@@ -26,23 +30,16 @@ export interface IBonusProps {
 export const Bonus = memo(({ bonusWithVolunteers }: IBonusProps) => {
   const [expanded, setExpanded] = useState(false);
 
-  const handleChange = () => {
-    setExpanded(!expanded);
-  };
-
-  const amountOfActiveBonuses = useMemo(
-    () =>
-      bonusWithVolunteers.assignments.reduce(
-        (sum, assignemnt) => sum + (assignemnt.historyItem.is_used ? 0 : 1),
-        0
-      ),
-    [bonusWithVolunteers]
+  const { bonus, assignments } = bonusWithVolunteers;
+  const activeCount = useMemo(
+    () => assignments.filter((a) => !a.historyItem.is_used).length,
+    [assignments]
   );
 
   return (
     <Accordion
       expanded={expanded}
-      onChange={handleChange}
+      onChange={() => setExpanded(!expanded)}
       className={classes.bonus}
       disableGutters
       elevation={0}
@@ -51,79 +48,90 @@ export const Bonus = memo(({ bonusWithVolunteers }: IBonusProps) => {
         expandIcon={
           <Image
             src={arrowDownSrc}
-            alt="Раскрыть список волонтеров"
+            alt="Раскрыть"
             width={20}
             height={20}
+            className={classes.arrowIcon}
           />
         }
-        className={classes.bonus_summary}
+        className={classes.summary}
       >
-        <div className={classes.bonus_info}>
-          <h3 className={classes.bonus_name}>
-            {bonusWithVolunteers.bonus.name}
-          </h3>
-          <div className={classes.bonus_organization}>
-            {bonusWithVolunteers.bonus.organization_name}
-          </div>
-          <Chip
-            label={`Выдан в: ${bonusWithVolunteers.assignments[0].historyItem.created_at}`}
-            size="small"
-            color="default"
-          />
-          <Chip
-            label={`Общее число назначений: ${bonusWithVolunteers.assignments.length}`}
-            size="small"
-            color="default"
-          />
-          <Chip
-            label={`Количество активных бонусов: ${amountOfActiveBonuses}`}
-            size="small"
-            color={amountOfActiveBonuses === 0 ? "error" : "success"}
-          />
-        </div>
+        <Box className={classes.summaryContent}>
+          <Box className={classes.bonusHeader}>
+            <Typography variant="subtitle1" className={classes.bonusName}>
+              {bonus.name}
+            </Typography>
+            <Stack direction="row" spacing={1} className={classes.stats}>
+              <Chip
+                label={`${assignments.length} назначенных`}
+                size="small"
+                className={classes.chip}
+              />
+              <Chip
+                label={`${activeCount} активных`}
+                size="small"
+                className={`${classes.chip} ${classes.activeChip}`}
+              />
+            </Stack>
+          </Box>
+          <Typography variant="body2" className={classes.orgName}>
+            {bonus.organization_name}
+          </Typography>
+
+          <Box className={classes.meta}>
+            <Typography variant="caption" className={classes.date}>
+              Создан: {assignments[0]?.historyItem.created_at || "-"}
+            </Typography>
+            {bonus.description && (
+              <Typography variant="caption" className={classes.descPreview}>
+                {bonus.description.slice(0, 60)}...
+              </Typography>
+            )}
+          </Box>
+        </Box>
       </AccordionSummary>
-      <AccordionDetails className={classes.bonus_details}>
-        <div className={classes.bonus_description}>
-          {bonusWithVolunteers.bonus.description}
-        </div>
-        <h4 className={classes.assigned_volunteers_title}>
-          Назначенные волонтеры:
-        </h4>
-        <div className={classes.volunteers_list}>
-          {bonusWithVolunteers.assignments.map((assignment) => (
-            <div key={assignment.volunteer.id} className={classes.volunteer}>
+      <AccordionDetails className={classes.details}>
+        {bonus.description && (
+          <>
+            <Typography variant="body2" className={classes.description}>
+              {bonus.description}
+            </Typography>
+            <Divider className={classes.divider} />
+          </>
+        )}
+        <Typography variant="subtitle2" className={classes.volunteersTitle}>
+          Волонтеры ({assignments.length})
+        </Typography>
+        <Box className={classes.volunteersGrid}>
+          {assignments.map(({ volunteer, historyItem }) => (
+            <Box key={volunteer.id} className={classes.volunteerCard}>
               <Image
-                className={classes.volunteer_image}
                 src={emptyAvatarSrc}
-                alt="Volunteer"
+                alt=""
                 width={40}
                 height={40}
+                className={classes.avatar}
               />
-              <div className={classes.volunteer_info}>
-                <div className={classes.volunteer_name}>
-                  {assignment.volunteer.fio}
-                  <span className={classes.volunteer_contact}>
-                    ({assignment.volunteer.phone_number})
-                  </span>
-                </div>
-                <div className={classes.assignment_info}>
-                  <span>Назначен в: {assignment.historyItem.created_at}</span>
+              <Box className={classes.volunteerInfo}>
+                <Typography variant="body2" className={classes.volunteerName}>
+                  {volunteer.fio}
+                </Typography>
+                <Box className={classes.volunteerMeta}>
+                  <Typography variant="caption" className={classes.phone}>
+                    {volunteer.phone_number}
+                  </Typography>
                   <Chip
-                    label={
-                      assignment.historyItem.is_used
-                        ? "Использованный"
-                        : "Активный"
-                    }
+                    label={historyItem.is_used ? "Использован" : "Активен"}
                     size="small"
-                    color={
-                      assignment.historyItem.is_used ? "default" : "success"
+                    className={
+                      !historyItem.is_used ? classes.activeChip : undefined
                     }
                   />
-                </div>
-              </div>
-            </div>
+                </Box>
+              </Box>
+            </Box>
           ))}
-        </div>
+        </Box>
       </AccordionDetails>
     </Accordion>
   );

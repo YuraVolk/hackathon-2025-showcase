@@ -8,6 +8,7 @@ body {
   font-family: Arial, Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  margin: 0;
 }
 
 * {
@@ -22,7 +23,6 @@ a {
   margin: 24px auto;
   padding: 24px;
   max-width: 500px;
-
 }
 .addVolForm {
   text-align: center;
@@ -39,15 +39,8 @@ a {
   transition: border-color 0.3s;
   margin: 6px 0 !important;
 }
-h3{
-padding: 1%;
-}
 
-.button{
+.button {
   margin-top: 16px !important;
   padding: 2%;
-}
-input:focus {
-  border-color: #0078FF;
-  outline: none;
 }

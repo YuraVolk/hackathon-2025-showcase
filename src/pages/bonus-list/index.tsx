@@ -3,7 +3,7 @@ import { Button, Typography } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 
 import styles from "./styles.module.css";
-import logoIcon from "../../assets/icons/logo.svg";
+import logoIcon from "@/assets/icons/logo.svg";
 import Image from "next/image";
 import { IVolunteer, IBonus, IBonusHistoryItem } from "@/models/volunteer";
 import { useMemo, useState } from "react";
@@ -52,7 +52,7 @@ const transformVolunteersToBonuses = (
   return Array.from(bonusMap.values());
 };
 
-const VolunteersPage = () => {
+export default function BonusListPage() {
   const [isAddBonusModalOpen, setAddBonusModalOpen] = useState(false);
   const filteredBonuses = useMemo(
     () => transformVolunteersToBonuses(VOLUNTEERS),
@@ -119,6 +119,4 @@ const VolunteersPage = () => {
       />
     </Layout>
   );
-};
-
-export default VolunteersPage;
+}

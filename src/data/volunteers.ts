@@ -1,4 +1,4 @@
-import { IVolunteer } from "@/models/volunteer";
+import { IOrganization, IVolunteer } from "@/models/volunteer";
 
 export const VOLUNTEERS: IVolunteer[] =
   `Иванов Иван Иванович	772456789012	+7 916 555 82 19	aleksandr.ivanov1985@yandex.ru	12.05.1988	Помощь в организации благотворительного забега
@@ -163,6 +163,7 @@ export const VOLUNTEERS: IVolunteer[] =
         email,
         birth_date,
         achievements,
+        unique_code: i.toString().repeat(2).slice(0, 2),
         history: [
           {
             id: 5,
@@ -203,3 +204,75 @@ export const VOLUNTEERS: IVolunteer[] =
         ],
       };
     });
+
+export const ORGANIZATIONS: IOrganization[] = [
+  {
+    id: "2",
+    name: "Тестовая организация",
+    description: "Какая-то тестовая",
+    bonuses: [
+      {
+        id: 6,
+        is_used: false,
+        volunteer_id: 5,
+        created_at: "01.01.25",
+        bonus: {
+          id: "7",
+          organization_name: "Тестовая организация",
+          name: "Бонус",
+          description: "Мощный бонус",
+        },
+      },
+    ],
+  },
+  {
+    id: "3",
+    name: "Тестовая организация",
+    description: "Какая-то тестовая",
+    bonuses: [
+      {
+        id: 6,
+        is_used: false,
+        volunteer_id: 5,
+        created_at: "01.01.25",
+        bonus: {
+          id: "7",
+          organization_name: "Тестовая организация",
+          name: "Бонус",
+          description: "Мощный бонус",
+        },
+      },
+      {
+        id: 7,
+        is_used: true,
+        volunteer_id: 5,
+        created_at: "01.01.25",
+        bonus: {
+          id: "8",
+          organization_name: "Тестовая организация",
+          name: "Бонус",
+          description: "Мощный бонус",
+        },
+      },
+    ],
+  },
+  {
+    id: "4",
+    name: "Тестовая организация",
+    description: "Какая-то тестовая",
+    bonuses: [
+      {
+        id: 6,
+        is_used: false,
+        volunteer_id: 5,
+        created_at: "01.01.25",
+        bonus: {
+          id: "7",
+          organization_name: "Тестовая организация",
+          name: "Бонус",
+          description: "Мощный бонус",
+        },
+      },
+    ],
+  },
+];
