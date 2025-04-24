@@ -63,11 +63,14 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       await getCookie("token", { req: context.req, res: context.res })
     );
 
-    const userInfo = await fetch(`${baseUrl}/api/user_info`, {
-      headers: {
-        token,
-      },
-    }).then((response) => response.json());
+    const userInfo = await fetch(
+      `http://hyper-ist.mooo.com:3000/api/user_info`,
+      {
+        headers: {
+          token,
+        },
+      }
+    ).then((response) => response.json());
 
     return {
       props: {
