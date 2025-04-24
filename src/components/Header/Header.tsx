@@ -131,15 +131,6 @@ export const Header = memo(
           <div className={styles.rightSection}>
             {isAuthenticated ? (
               <>
-                <IconButton
-                  aria-label="notifications"
-                  className={styles.notificationButton}
-                >
-                  <Badge badgeContent={4} color="error">
-                    <NotificationsIcon />
-                  </Badge>
-                </IconButton>
-
                 <div className={styles.userProfile}>
                   <Avatar
                     src={user?.avatar}

@@ -56,6 +56,7 @@ export default function VolunteersPage() {
   return (
     <Layout
       headerProps={{
+        isAuthenticated: true,
         logo: <Image src={logoIcon} alt="Лого" width={32} height={32} />,
         categories: [
           {
