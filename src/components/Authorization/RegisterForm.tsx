@@ -1,9 +1,13 @@
-import React, { memo, useState } from "react";
+import React, { memo, useRef, useState } from "react";
 import { TextField, Button, Tabs, Tab, Link } from "@mui/material";
 import NextLink from "next/link";
 import styles from "./AuthForm.module.css";
+import { useSetCookie } from "cookies-next";
+import { useRouter } from "next/router";
 
 export const RegisterForm = memo(() => {
+  const setCookie = useSetCookie();
+  const router = useRouter();
   const [userType, setUserType] = useState<"volunteer" | "company">(
     "volunteer"
   );
@@ -15,6 +19,7 @@ export const RegisterForm = memo(() => {
   const [password, setPassword] = useState<string>("");
   const [companyEmail, setCompanyEmail] = useState<string>("");
   const [companyPassword, setCompanyPassword] = useState<string>("");
+  const [isSubmitting, setSubmitting] = useState(false);
 
   const [errors, setErrors] = useState({
     fio: false,
@@ -60,11 +65,12 @@ export const RegisterForm = memo(() => {
       companyEmail: companyEmail.trim().length === 0,
       companyPassword: companyPassword.trim().length === 0,
     };
+
     setErrors(newErrors);
     return !Object.values(newErrors).some(Boolean);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const isValid =
       userType === "volunteer"
@@ -72,10 +78,47 @@ export const RegisterForm = memo(() => {
         : validateCompanyForm();
 
     if (isValid) {
-      if (userType === "volunteer") {
-        console.log({ fio, inn, phoneNumber, email, birthDate, password });
-      } else {
-        console.log({ email: companyEmail, password: companyPassword });
+      setSubmitting(true);
+      try {
+        if (userType === "volunteer") {
+          const result = await fetch("/api/register_volonter", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              login: email,
+              password,
+              fio,
+              inn,
+              tel: phoneNumber,
+              mail: email,
+              dob: birthDate,
+            }),
+          }).then((response) => response.json());
+          setCookie("token", result.data.token);
+          router.push("/my-bonuses/");
+        } else {
+          const result = await fetch("/api/register_volonter", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              login: email,
+              password,
+              fio,
+              inn,
+              tel: phoneNumber,
+              mail: email,
+              dob: birthDate,
+            }),
+          }).then((response) => response.json());
+          setCookie("token", result.data.token);
+          router.push("/volunteers/");
+        }
+      } finally {
+        setSubmitting(false);
       }
     }
   };
@@ -162,11 +205,11 @@ export const RegisterForm = memo(() => {
               fullWidth
               margin="normal"
               id="password"
-              label="Ваш код доступа"
+              label="Ваш пароль"
               variant="filled"
               type="password"
               error={errors.password}
-              helperText={errors.password ? "Введите ваш код доступа" : ""}
+              helperText={errors.password ? "Введите ваш пароль" : ""}
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               className={styles.inputField}
@@ -190,13 +233,11 @@ export const RegisterForm = memo(() => {
               fullWidth
               margin="normal"
               id="companyPassword"
-              label="Ваш код доступа"
+              label="Ваш пароль"
               variant="filled"
               type="password"
               error={errors.companyPassword}
-              helperText={
-                errors.companyPassword ? "Введите ваш код доступа" : ""
-              }
+              helperText={errors.companyPassword ? "Введите ваш пароль" : ""}
               value={companyPassword}
               onChange={(e) => setCompanyPassword(e.target.value)}
               className={styles.inputField}
@@ -209,6 +250,7 @@ export const RegisterForm = memo(() => {
           variant="contained"
           size="large"
           className={styles.submitButton}
+          disabled={isSubmitting}
         >
           Зарегистрироваться
         </Button>

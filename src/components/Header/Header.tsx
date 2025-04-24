@@ -2,8 +2,8 @@ import { memo, useState } from "react";
 import styles from "./Header.module.css";
 import { useRouter } from "next/router";
 import { Button, Avatar, Badge, IconButton } from "@mui/material";
-import NotificationsIcon from "@mui/icons-material/Notifications";
 import MenuIcon from "@mui/icons-material/Menu";
+import { deleteCookie } from "cookies-next";
 
 interface IHeaderCategory {
   title: string;
@@ -39,8 +39,13 @@ export const Header = memo(
       }
     };
 
-    const handleAuthClick = () => {
-      router.push(isAuthenticated ? "/logout" : "/login");
+    const handleAuthClick = async () => {
+      if (isAuthenticated) {
+        await deleteCookie("token");
+        router.push("/login");
+      } else {
+        router.push("/login");
+      }
     };
 
     return (
@@ -53,7 +58,6 @@ export const Header = memo(
             >
               <MenuIcon />
             </IconButton>
-
             <div className={styles.logoWrapper}>
               {logo && <div className={styles.logo}>{logo}</div>}
               <span className={styles.logoText}>
@@ -61,7 +65,6 @@ export const Header = memo(
               </span>
             </div>
           </div>
-
           <nav
             className={`${styles.nav} ${mobileMenuOpen ? styles.navOpen : ""}`}
           >
@@ -104,7 +107,6 @@ export const Header = memo(
                   )}
                 </li>
               ))}
-
               <li className={styles.externalLink}>
                 <a
                   href="https://dobro.ru/"
@@ -115,19 +117,8 @@ export const Header = memo(
                   Добро.рф
                 </a>
               </li>
-
-              <li className={styles.navItem}>
-                <div
-                  className={styles.navLink}
-                  onClick={() => router.push("/contacts")}
-                >
-                  Контакты
-                  <span className={styles.underline} />
-                </div>
-              </li>
             </ul>
           </nav>
-
           <div className={styles.rightSection}>
             {isAuthenticated ? (
               <>
@@ -143,7 +134,6 @@ export const Header = memo(
                 </div>
               </>
             ) : null}
-
             <Button
               variant="contained"
               color="primary"

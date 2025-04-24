@@ -1,15 +1,16 @@
 import React, { memo, useState } from "react";
-import { Dialog } from "@mui/material";
 import styles from "./MyBonus.module.css";
-import { IBonusHistoryItem } from "@/models/volunteer";
 import Image from "next/image";
 import bonusPlaceholder from "@/assets/img/bonus-placeholder.jpg";
+import { NachBonus } from "@/models/volunteer";
+import { QrModal } from "../QrModal/QrModal";
 
 interface IBonusCardProps {
-  bonusItem: IBonusHistoryItem;
+  token: string;
+  bonusItem: NachBonus;
 }
 
-export const MyBonus = memo(({ bonusItem }: IBonusCardProps) => {
+export const MyBonus = memo(({ bonusItem, token }: IBonusCardProps) => {
   const [open, setOpen] = useState(false);
 
   const handleOpen = () => {
@@ -25,46 +26,35 @@ export const MyBonus = memo(({ bonusItem }: IBonusCardProps) => {
       <div className={styles.imageContainer}>
         <Image
           src={bonusPlaceholder}
-          alt={bonusItem.bonus.name}
+          alt={bonusItem.bonus_name ?? ""}
           className={styles.image}
         />
       </div>
       <div className={styles.content}>
         <div className={styles.header}>
-          <h3 className={styles.title}>{bonusItem.bonus.name}</h3>
-          <span className={styles.organization}>
-            {bonusItem.bonus.organization_name}
-          </span>
+          <h3 className={styles.title}>{bonusItem.bonus_name}</h3>
+          <span className={styles.organization}>Новое предприятие</span>
         </div>
-        <p className={styles.description}>{bonusItem.bonus.description}</p>
         <div className={styles.footer}>
-          <div className={styles.date}>Получен: {bonusItem.created_at}</div>
+          <div className={styles.date}>
+            Получен: {bonusItem.time_received ?? ""}
+          </div>
           <button
             onClick={handleOpen}
-            className={`${styles.button} ${
-              bonusItem.is_used ? styles.used : ""
-            }`}
-            disabled={bonusItem.is_used}
+            className={`${styles.button} ${false ? styles.used : ""}`}
+            disabled={false}
           >
-            {bonusItem.is_used ? "Использован" : "Показать QR"}
+            {false ? "Использован" : "Показать QR"}
           </button>
         </div>
       </div>
-      <Dialog open={open} onClose={handleClose} className={styles.dialog}>
-        <div className={styles.qrContainer}>
-          <h3 className={styles.qrTitle}>Ваш QR-код</h3>
-          <div className={styles.qrCode}>
-            <div className={styles.qrPlaceholder}>QR-CODE</div>
-          </div>
-          <p className={styles.qrInfo}>
-            Покажите этот код сотруднику {bonusItem.bonus.organization_name} для
-            активации бонуса
-          </p>
-          <button onClick={handleClose} className={styles.closeButton}>
-            Закрыть
-          </button>
-        </div>
-      </Dialog>
+      <QrModal
+        open={open}
+        onClose={handleClose}
+        organization_name="Новое предприятие"
+        token={token}
+        bonus={bonusItem}
+      />
     </div>
   );
 });

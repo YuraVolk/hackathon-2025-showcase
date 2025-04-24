@@ -1,6 +1,4 @@
-import { IOrganization, IVolunteer } from "@/models/volunteer";
-
-export const VOLUNTEERS: IVolunteer[] =
+export const VOLUNTEERS: any[] =
   `Иванов Иван Иванович	772456789012	+7 916 555 82 19	aleksandr.ivanov1985@yandex.ru	12.05.1988	Помощь в организации благотворительного забега
 Петров Петр Петрович	500123456789	+7 925 123 45 67	mariya.petrova2000@yandex.ru	28.02.2001	Сбор средств для местного приюта для животных
 Сидоров Сидор Сидорович	667101122334	+7 903 987 65 43	sergey.smirnov77@yandex.ru	03.09.1975	Участие в уборке парка
@@ -165,112 +163,118 @@ export const VOLUNTEERS: IVolunteer[] =
         achievements,
         unique_code: i.toString().repeat(2).slice(0, 2),
         history: [
-          {
-            id: 5,
-            is_used: false,
-            volunteer_id: 5,
-            created_at: "01.01.25",
-            bonus: {
-              id: "6",
-              organization_name: "Тестовая организация",
-              name: "Бонус",
-              description: "Мощный бонус",
-            },
-          },
-          {
-            id: 6,
-            is_used: false,
-            volunteer_id: 5,
-            created_at: "01.01.25",
-            bonus: {
-              id: "7",
-              organization_name: "Тестовая организация",
-              name: "Бонус",
-              description: "Мощный бонус",
-            },
-          },
-          {
-            id: 7,
-            is_used: true,
-            volunteer_id: 5,
-            created_at: "01.01.25",
-            bonus: {
-              id: "8",
-              organization_name: "Тестовая организация",
-              name: "Бонус",
-              description: "Мощный бонус",
-            },
-          },
-        ],
+          i < 50
+            ? {
+                id: 5,
+                is_used: false,
+                volunteer_id: 5,
+                created_at: "2025-04-24",
+                bonus: {
+                  id: "6",
+                  organization_name: "Новое предприятие",
+                  name: "Скидка 15%",
+                  description: "Большая скидка на все покупки в нашей компании",
+                },
+              }
+            : undefined,
+          i >= 50 && i < 100
+            ? {
+                id: 6,
+                is_used: false,
+                volunteer_id: 5,
+                created_at: "2025-04-24",
+                bonus: {
+                  id: "7",
+                  organization_name: "Новое предприятие",
+                  name: "Скидка 10%",
+                  description: "Большая скидка на все покупки в нашей компании",
+                },
+              }
+            : undefined,
+          i >= 100 && i < 150
+            ? {
+                id: 7,
+                is_used: false,
+                volunteer_id: 5,
+                created_at: "2025-04-24",
+                bonus: {
+                  id: "8",
+                  organization_name: "Новое предприятие",
+                  name: "Скидка 5%",
+                  description: "Большая скидка на все покупки в нашей компании",
+                },
+              }
+            : undefined,
+        ].filter(Boolean),
       };
     });
 
-export const ORGANIZATIONS: IOrganization[] = [
+export const ORGANIZATIONS: any[] = [
   {
     id: "2",
-    name: "Тестовая организация",
+    name: "Новое предприятие",
     description: "Какая-то тестовая",
     bonuses: [
       {
         id: 6,
         is_used: false,
         volunteer_id: 5,
-        created_at: "01.01.25",
+        created_at: "2025-04-24",
         bonus: {
           id: "7",
-          organization_name: "Тестовая организация",
+          organization_name: "Новое предприятие",
           name: "Бонус",
-          description: "Мощный бонус",
+          description: "Большая скидка на все покупки в нашей компании",
         },
       },
     ],
   },
   {
     id: "3",
-    name: "Тестовая организация",
+    name: "Новое предприятие",
     description: "Какая-то тестовая",
     bonuses: [
       {
         id: 6,
         is_used: false,
         volunteer_id: 5,
-        created_at: "01.01.25",
+        created_at: "2025-04-24",
         bonus: {
           id: "7",
-          organization_name: "Тестовая организация",
+          organization_name: "Новое предприятие",
           name: "Бонус",
-          description: "Мощный бонус",
+          description: "Большая скидка на все покупки в нашей компании",
         },
       },
       {
         id: 7,
         is_used: true,
         volunteer_id: 5,
-        created_at: "01.01.25",
+        created_at: "2025-04-24",
         bonus: {
           id: "8",
-          organization_name: "Тестовая организация",
+          organization_name: "Новое предприятие",
           name: "Бонус",
-          description: "Мощный бонус",
+          description: "Большая скидка на все покупки в нашей компании",
         },
       },
     ],
   },
   {
     id: "4",
-    name: "Тестовая организация",
+    name: "Новое предприятие",
     description: "Какая-то тестовая",
     bonuses: [
       {
         id: 6,
         is_used: false,
         volunteer_id: 5,
-        created_at: "01.01.25",
+        created_at: "2025-04-24",
         bonus: {
           id: "7",
-          organization_name: "Тестовая организация",
+          organization_name: "Новое предприятие",
           name: "Бонус",
-          description: "Мощный бонус",
+          description: "Большая скидка на все покупки в нашей компании",
         },
       },
     ],

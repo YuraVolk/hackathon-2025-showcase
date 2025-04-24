@@ -12,10 +12,10 @@ import emptyAvatarSrc from "@/assets/icons/empty-avatar.svg";
 import arrowDownSrc from "@/assets/icons/icon-bottom.svg";
 import classes from "./Volunteer.module.css";
 
-import { IVolunteer } from "@/models/volunteer";
+import { Volonter } from "@/models/volunteer";
 
 export interface IVolunteerProps {
-  volunteer: IVolunteer;
+  volunteer: Volonter;
   showPersonalData: boolean;
 }
 
@@ -29,7 +29,7 @@ export const Volunteer = memo(
     };
 
     const copyCode = () => {
-      navigator.clipboard.writeText(volunteer.unique_code);
+      navigator.clipboard.writeText((volunteer.id_acc * 678352).toString(36));
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     };
@@ -67,24 +67,6 @@ export const Volunteer = memo(
               width={48}
               height={48}
             />
-            {volunteer.unique_code && (
-              <Tooltip
-                title={copied ? "Скопировано!" : "Копировать код"}
-                placement="top"
-              >
-                <Chip
-                  label={volunteer.unique_code}
-                  size="small"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    copyCode();
-                  }}
-                  deleteIcon={<ContentCopyIcon fontSize="small" />}
-                  onDelete={copyCode}
-                  className={classes.codeChip}
-                />
-              </Tooltip>
-            )}
           </div>
           <div className={classes.volunteer_description}>
             <Typography
@@ -92,21 +74,31 @@ export const Volunteer = memo(
               className={classes.volunteer_description_name}
             >
               {volunteer.fio}
-              {showPersonalData && (
-                <Typography
-                  component="span"
-                  className={classes.volunteer_description_phone}
+              {volunteer.id_acc && (
+                <Tooltip
+                  title={copied ? "Скопировано!" : "Копировать код"}
+                  placement="top"
                 >
-                  {volunteer.phone_number}
-                </Typography>
+                  <Chip
+                    label={(volunteer.id_acc * 678352).toString(36)}
+                    size="small"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      copyCode();
+                    }}
+                    deleteIcon={<ContentCopyIcon fontSize="small" />}
+                    onDelete={copyCode}
+                    className={classes.codeChip}
+                  />
+                </Tooltip>
               )}
             </Typography>
             <Typography
               variant="body2"
               className={classes.volunteer_description_achievements}
             >
-              Награжден бонусами за достижения в сфере "{volunteer.achievements}
-              "
+              Награжден бонусами за достижения в сфере "
+              {volunteer.dost ?? "Не указано"}"
             </Typography>
           </div>
         </AccordionSummary>
@@ -117,19 +109,25 @@ export const Volunteer = memo(
                 <Typography variant="body2" className={classes.infoLabel}>
                   ИНН:
                 </Typography>
-                <Typography variant="body2">{volunteer.inn}</Typography>
+                <Typography variant="body2">
+                  Клиент не дал доступа на просмотр личной информации
+                </Typography>
               </div>
               <div className={classes.volunteer_info_item}>
                 <Typography variant="body2" className={classes.infoLabel}>
                   Email:
                 </Typography>
-                <Typography variant="body2">{volunteer.email}</Typography>
+                <Typography variant="body2">
+                  Клиент не дал доступа на просмотр личной информации
+                </Typography>
               </div>
               <div className={classes.volunteer_info_item}>
                 <Typography variant="body2" className={classes.infoLabel}>
                   Дата рождения:
                 </Typography>
-                <Typography variant="body2">{volunteer.birth_date}</Typography>
+                <Typography variant="body2">
+                  Клиент не дал доступа на просмотр личной информации
+                </Typography>
               </div>
             </>
           )}
@@ -137,25 +135,25 @@ export const Volunteer = memo(
             <Typography variant="subtitle2" className={classes.bonusTitle}>
               История бонусов:
             </Typography>
-            {volunteer.history.map((item) => (
+            {volunteer.nachBonuses?.map((item) => (
               <div key={item.id} className={classes.volunteer_bonus_item}>
                 <div className={classes.volunteer_bonus_info}>
                   <Typography variant="body2" className={classes.bonusName}>
-                    {item.bonus.name}
+                    {item.bonus_name}
                   </Typography>
                   <Typography variant="body2" className={classes.bonusOrg}>
-                    {item.bonus.organization_name}
+                    {item.bonus_name}
                   </Typography>
                   <Typography variant="caption" className={classes.bonusDate}>
-                    {item.created_at}
+                    {item.bonus_name}
                   </Typography>
                 </div>
                 <Chip
-                  label={item.is_used ? "Использован" : "Активен"}
-                  color={item.is_used ? "default" : "success"}
+                  label={false ? "Использован" : "Активен"}
+                  color={false ? "default" : "success"}
                   size="small"
                   sx={{
-                    backgroundColor: item.is_used ? "#444" : "#1e3a8a",
+                    backgroundColor: false ? "#444" : "#1e3a8a",
                     color: "white",
                   }}
                 />

@@ -1,6 +1,4 @@
-import Image from "next/image";
 import styles from "./styles.module.css";
-import logoIcon from "@/assets/icons/logo.svg";
 import { Volunteer } from "@/components/Volunteer/Volunteer";
 import { VOLUNTEERS } from "@/data/volunteers";
 import { Filters } from "@/components/Filters/Filters";
@@ -10,32 +8,48 @@ import { Sorting } from "@/data/filters";
 import dayjs, { Dayjs } from "dayjs";
 import customParseFormat from "dayjs/plugin/customParseFormat";
 import { Typography } from "@mui/material";
+import { GetServerSideProps } from "next";
+import { getCookie } from "cookies-next";
+import { getHeaderProps } from "@/data/header";
+import { Volonter } from "@/models/volunteer";
+import { baseUrl } from "@/data/url";
 dayjs.extend(customParseFormat);
 
-export default function VolunteersPage() {
+export default function VolunteersPage({
+  role,
+  token,
+  volunteers,
+}: {
+  role: string;
+  token: string;
+  volunteers: Volonter[];
+}) {
   const [achievements, setAchievements] = useState<string[]>([]);
   const [sorting, setSorting] = useState(Sorting.ByAchievementsAscending);
   const [minBirthDate, setMinBirthDate] = useState<Dayjs | null>(null);
   const [maxBirthDate, setMaxBirthDate] = useState<Dayjs | null>(null);
-
   const achievementTypes = useMemo(
     () =>
       Array.from(
-        new Set(VOLUNTEERS.map((volunteer) => volunteer.achievements))
+        new Set(
+          volunteers.map(
+            (volunteer) => volunteer.dost ?? "Достижения не указаны"
+          )
+        )
       ),
     []
   );
 
   const filteredVolunteers = useMemo(() => {
-    const baseVolunteers = VOLUNTEERS.filter((volunteer) => {
+    const baseVolunteers = volunteers.filter((volunteer) => {
       if (
         achievements.length !== 0 &&
-        !achievements.includes(volunteer.achievements)
+        !achievements.includes(volunteer.dost ?? "Достижения не указаны")
       ) {
         return false;
       }
 
-      const birthDay = dayjs(volunteer.birth_date, "DD.MM.YYYY");
+      const birthDay = dayjs(volunteer.DOB, "YYYY-MM-DD");
       if (
         (minBirthDate !== null && birthDay.isBefore(minBirthDate)) ||
         (maxBirthDate !== null && birthDay.isAfter(maxBirthDate))
@@ -54,35 +68,7 @@ export default function VolunteersPage() {
   }, [achievements, sorting, minBirthDate, maxBirthDate]);
 
   return (
-    <Layout
-      headerProps={{
-        isAuthenticated: true,
-        logo: <Image src={logoIcon} alt="Лого" width={32} height={32} />,
-        categories: [
-          {
-            title: "Главная",
-            url: "/",
-          },
-          {
-            title: "Волонтеры",
-            url: "/volunteers/",
-          },
-          {
-            title: "Список бонусов",
-            url: "/bonus-list/",
-          },
-          {
-            title: "Связаться с нами",
-            url: () =>
-              window.scrollTo({
-                left: 0,
-                top: document.body.scrollHeight,
-                behavior: "smooth",
-              }),
-          },
-        ],
-      }}
-    >
+    <Layout headerProps={getHeaderProps(role)}>
       <Typography variant="h4" component="h1">
         Список волонтеров
       </Typography>
@@ -107,3 +93,38 @@ export default function VolunteersPage() {
     </Layout>
   );
 }
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  try {
+    const token = String(
+      await getCookie("token", { req: context.req, res: context.res })
+    );
+
+    const userInfo = await fetch(`${baseUrl}/api/user_info`, {
+      headers: {
+        token,
+      },
+    }).then((response) => response.json());
+    const allVolonters = await fetch(`${baseUrl}/api/all_volonters`, {
+      headers: {
+        token,
+      },
+    }).then((response) => response.json());
+
+    return {
+      props: {
+        token,
+        role: userInfo.data.role,
+        volunteers: allVolonters,
+      },
+    };
+  } catch (error) {
+    return {
+      props: {
+        role: "",
+        token: "",
+        volunteers: [],
+      },
+    };
+  }
+};

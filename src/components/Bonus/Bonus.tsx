@@ -13,13 +13,12 @@ import {
 import emptyAvatarSrc from "@/assets/icons/empty-avatar.svg";
 import arrowDownSrc from "@/assets/icons/icon-bottom.svg";
 import classes from "./Bonus.module.css";
-import { IBonus, IBonusHistoryItem, IVolunteer } from "@/models/volunteer";
 
 export interface IBonusWithVolunteers {
-  bonus: IBonus;
+  bonus: any;
   assignments: {
-    historyItem: IBonusHistoryItem;
-    volunteer: IVolunteer;
+    historyItem: any;
+    volunteer: any;
   }[];
 }
 
@@ -77,16 +76,10 @@ export const Bonus = memo(({ bonusWithVolunteers }: IBonusProps) => {
           <Typography variant="body2" className={classes.orgName}>
             {bonus.organization_name}
           </Typography>
-
           <Box className={classes.meta}>
             <Typography variant="caption" className={classes.date}>
               Создан: {assignments[0]?.historyItem.created_at || "-"}
             </Typography>
-            {bonus.description && (
-              <Typography variant="caption" className={classes.descPreview}>
-                {bonus.description.slice(0, 60)}...
-              </Typography>
-            )}
           </Box>
         </Box>
       </AccordionSummary>
