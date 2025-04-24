@@ -77,16 +77,10 @@ export const Bonus = memo(({ bonusWithVolunteers }: IBonusProps) => {
           <Typography variant="body2" className={classes.orgName}>
             {bonus.organization_name}
           </Typography>
-
           <Box className={classes.meta}>
             <Typography variant="caption" className={classes.date}>
               Создан: {assignments[0]?.historyItem.created_at || "-"}
             </Typography>
-            {bonus.description && (
-              <Typography variant="caption" className={classes.descPreview}>
-                {bonus.description.slice(0, 60)}...
-              </Typography>
-            )}
           </Box>
         </Box>
       </AccordionSummary>

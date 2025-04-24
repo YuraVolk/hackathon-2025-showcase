@@ -27,7 +27,6 @@ export default function VolunteersPage({
   const [sorting, setSorting] = useState(Sorting.ByAchievementsAscending);
   const [minBirthDate, setMinBirthDate] = useState<Dayjs | null>(null);
   const [maxBirthDate, setMaxBirthDate] = useState<Dayjs | null>(null);
-  console.log(volunteers);
   const achievementTypes = useMemo(
     () =>
       Array.from(
