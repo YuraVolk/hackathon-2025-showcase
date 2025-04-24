@@ -1,33 +1,64 @@
-export interface IBonus {
-  id: string;
-  organization_name: string;
-  name: string;
-  description: string;
-}
-
-export interface IBonusHistoryItem {
+export interface Role {
   id: number;
-  volunteer_id: number;
-  bonus: IBonus;
-  created_at: string;
-  is_used: boolean;
+  naim: string;
+  accounts?: Account[];
 }
 
-export interface IVolunteer {
+export interface Account {
   id: number;
-  fio: string;
-  inn: string;
-  phone_number: string;
-  email: string;
-  birth_date: string;
-  achievements: string;
-  unique_code: string;
-  history: IBonusHistoryItem[];
+  login: string;
+  password: string;
+  role_id: number;
+  token: string;
+  role?: Role;
+  volonter?: Volonter;
+  partner?: Partner;
 }
 
-export interface IOrganization {
-  id: string;
-  name: string;
-  description: string;
-  bonuses: IBonusHistoryItem[];
+export interface Partner {
+  id: number;
+  naim: string;
+  id_acc: number;
+  account?: Account;
+  bonuses?: NachBonus[];
+}
+
+export interface Category {
+  id: number;
+  naim: string;
+  bonuses?: Bonus[];
+}
+
+export interface Bonus {
+  id: number;
+  id_partner: number;
+  naim: string;
+  count: number;
+  id_category?: number | null;
+  partner?: Partner;
+  category?: Category | null;
+  nachBonuses?: NachBonus[];
+}
+
+export interface Volonter {
+  id: number;
+  fio?: string | null;
+  inn?: string | null;
+  tel?: string | null;
+  DOB?: string | null;
+  id_acc: number;
+  dost?: string | null;
+  account?: Account;
+  nachBonuses?: NachBonus[];
+}
+
+export interface NachBonus {
+  id: number;
+  id_bonus?: number | null;
+  time_received?: string | null;
+  id_volonter?: number | null;
+  is_expired?: boolean;
+  bonus?: Bonus | null;
+  bonus_name: string | null;
+  volonter?: Volonter | null;
 }

@@ -43,23 +43,13 @@ export const Footer = memo(() => {
           <h3 className={styles.footerTitle}>Ресурсы</h3>
           <ul className={styles.linkList}>
             <li className={styles.linkItem}>
-              <Link href="/about" className={styles.link}>
+              <Link href="/" className={styles.link}>
                 О нас
               </Link>
             </li>
             <li className={styles.linkItem}>
               <Link href="/faq" className={styles.link}>
                 FAQ
-              </Link>
-            </li>
-            <li className={styles.linkItem}>
-              <Link href="/blog" className={styles.link}>
-                Блог
-              </Link>
-            </li>
-            <li className={styles.linkItem}>
-              <Link href="/contacts" className={styles.link}>
-                Контакты
               </Link>
             </li>
           </ul>

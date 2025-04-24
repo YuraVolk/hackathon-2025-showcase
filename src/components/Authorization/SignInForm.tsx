@@ -2,8 +2,13 @@ import React, { memo, useState } from "react";
 import { TextField, Button, Tabs, Tab, Link } from "@mui/material";
 import NextLink from "next/link";
 import styles from "./AuthForm.module.css";
+import { useSetCookie } from "cookies-next";
+import { useRouter } from "next/router";
 
 export const SignInForm = memo(() => {
+  const router = useRouter();
+  const [isSubmitting, setSubmitting] = useState(false);
+  const setCookie = useSetCookie();
   const [userType, setUserType] = useState<"volunteer" | "company">(
     "volunteer"
   );
@@ -18,14 +23,34 @@ export const SignInForm = memo(() => {
     setUserType(newValue);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (email.trim().length === 0 || password.trim().length === 0) {
       setHasErr(true);
       return;
     }
 
-    console.log({ userType, email, password });
+    setSubmitting(true);
+    try {
+      const result = await fetch("/api/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          login: email,
+          password,
+        }),
+      }).then((response) => response.json());
+      setCookie("token", result.user?.token);
+      if (!result.user?.token) {
+        return;
+      }
+
+      router.push(userType === "volunteer" ? "/my-bonuses" : "/volunteers/");
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -79,6 +104,7 @@ export const SignInForm = memo(() => {
           variant="contained"
           size="large"
           className={styles.submitButton}
+          disabled={isSubmitting}
         >
           Войти
         </Button>

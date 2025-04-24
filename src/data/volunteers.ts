@@ -172,7 +172,7 @@ export const VOLUNTEERS: IVolunteer[] =
             created_at: "01.01.25",
             bonus: {
               id: "6",
-              organization_name: "Тестовая организация",
+              organization_name: "Новое предприятие",
               name: "Бонус",
               description: "Мощный бонус",
             },
@@ -184,7 +184,7 @@ export const VOLUNTEERS: IVolunteer[] =
             created_at: "01.01.25",
             bonus: {
               id: "7",
-              organization_name: "Тестовая организация",
+              organization_name: "Новое предприятие",
               name: "Бонус",
               description: "Мощный бонус",
             },
@@ -196,7 +196,7 @@ export const VOLUNTEERS: IVolunteer[] =
             created_at: "01.01.25",
             bonus: {
               id: "8",
-              organization_name: "Тестовая организация",
+              organization_name: "Новое предприятие",
               name: "Бонус",
               description: "Мощный бонус",
             },
@@ -208,7 +208,7 @@ export const VOLUNTEERS: IVolunteer[] =
 export const ORGANIZATIONS: IOrganization[] = [
   {
     id: "2",
-    name: "Тестовая организация",
+    name: "Новое предприятие",
     description: "Какая-то тестовая",
     bonuses: [
       {
@@ -218,7 +218,7 @@ export const ORGANIZATIONS: IOrganization[] = [
         created_at: "01.01.25",
         bonus: {
           id: "7",
-          organization_name: "Тестовая организация",
+          organization_name: "Новое предприятие",
           name: "Бонус",
           description: "Мощный бонус",
         },
@@ -227,7 +227,7 @@ export const ORGANIZATIONS: IOrganization[] = [
   },
   {
     id: "3",
-    name: "Тестовая организация",
+    name: "Новое предприятие",
     description: "Какая-то тестовая",
     bonuses: [
       {
@@ -237,7 +237,7 @@ export const ORGANIZATIONS: IOrganization[] = [
         created_at: "01.01.25",
         bonus: {
           id: "7",
-          organization_name: "Тестовая организация",
+          organization_name: "Новое предприятие",
           name: "Бонус",
           description: "Мощный бонус",
         },
@@ -249,7 +249,7 @@ export const ORGANIZATIONS: IOrganization[] = [
         created_at: "01.01.25",
         bonus: {
           id: "8",
-          organization_name: "Тестовая организация",
+          organization_name: "Новое предприятие",
           name: "Бонус",
           description: "Мощный бонус",
         },
@@ -258,7 +258,7 @@ export const ORGANIZATIONS: IOrganization[] = [
   },
   {
     id: "4",
-    name: "Тестовая организация",
+    name: "Новое предприятие",
     description: "Какая-то тестовая",
     bonuses: [
       {
@@ -268,7 +268,7 @@ export const ORGANIZATIONS: IOrganization[] = [
         created_at: "01.01.25",
         bonus: {
           id: "7",
-          organization_name: "Тестовая организация",
+          organization_name: "Новое предприятие",
           name: "Бонус",
           description: "Мощный бонус",
         },

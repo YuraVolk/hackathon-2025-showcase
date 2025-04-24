@@ -3,16 +3,17 @@ import { QrModal } from "@/components/QrModal/QrModal";
 import styles from "./MyPartner.module.css";
 import organizationPlaceholder from "@/assets/img/organization-placholder.jpg";
 import Image from "next/image";
-import { IBonusHistoryItem, IOrganization } from "@/models/volunteer";
+import { NachBonus, Partner } from "@/models/volunteer";
 
 interface IMyPartnerProps {
-  organization: IOrganization;
+  token: string;
+  organization: Partner;
 }
 
-export const MyPartner = memo(({ organization }: IMyPartnerProps) => {
-  const [selectedBonus, setSelectedBonus] = useState<IBonusHistoryItem>();
+export const MyPartner = memo(({ organization, token }: IMyPartnerProps) => {
+  const [selectedBonus, setSelectedBonus] = useState<NachBonus>();
 
-  const handleShowQr = (bonus: IBonusHistoryItem) => {
+  const handleShowQr = (bonus: NachBonus) => {
     setSelectedBonus(bonus);
   };
 
@@ -25,24 +26,26 @@ export const MyPartner = memo(({ organization }: IMyPartnerProps) => {
       <div className={styles.imageContainer}>
         <Image
           src={organizationPlaceholder}
-          alt={organization.name}
+          alt={organization.naim}
           className={styles.image}
         />
       </div>
       <div className={styles.content}>
         <div className={styles.header}>
-          <h3 className={styles.title}>{organization.name}</h3>
-          <p className={styles.description}>{organization.description}</p>
+          <h3 className={styles.title}>{organization.naim}</h3>
+          <p className={styles.description}>
+            Это тестовая созданная организация
+          </p>
         </div>
         <div className={styles.bonusesContainer}>
           <h4 className={styles.bonusesTitle}>Доступные бонусы:</h4>
           <ul className={styles.bonusesList}>
-            {organization.bonuses.map((bonus) => (
+            {organization.bonuses?.map((bonus) => (
               <li key={bonus.id} className={styles.bonusItem}>
                 <div className={styles.bonusContent}>
-                  <h5 className={styles.bonusName}>{bonus.bonus.name}</h5>
+                  <h5 className={styles.bonusName}>{bonus.bonus_name}</h5>
                   <p className={styles.bonusDescription}>
-                    {bonus.bonus.description}
+                    Большая скидка на все покупки в нашей компании
                   </p>
                 </div>
                 <button
@@ -61,7 +64,8 @@ export const MyPartner = memo(({ organization }: IMyPartnerProps) => {
           open={true}
           onClose={handleCloseModal}
           bonus={selectedBonus}
-          organization_name={organization.name}
+          token={token}
+          organization_name={organization.naim}
         />
       )}
     </div>
