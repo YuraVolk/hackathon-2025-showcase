@@ -1,6 +1,4 @@
-import { IOrganization, IVolunteer } from "@/models/volunteer";
-
-export const VOLUNTEERS: IVolunteer[] =
+export const VOLUNTEERS: any[] =
   `Иванов Иван Иванович	772456789012	+7 916 555 82 19	aleksandr.ivanov1985@yandex.ru	12.05.1988	Помощь в организации благотворительного забега
 Петров Петр Петрович	500123456789	+7 925 123 45 67	mariya.petrova2000@yandex.ru	28.02.2001	Сбор средств для местного приюта для животных
 Сидоров Сидор Сидорович	667101122334	+7 903 987 65 43	sergey.smirnov77@yandex.ru	03.09.1975	Участие в уборке парка
@@ -211,7 +209,7 @@ export const VOLUNTEERS: IVolunteer[] =
       };
     });
 
-export const ORGANIZATIONS: IOrganization[] = [
+export const ORGANIZATIONS: any[] = [
   {
     id: "2",
     name: "Новое предприятие",

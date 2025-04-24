@@ -3,9 +3,6 @@ import { Button, Typography } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 
 import styles from "./styles.module.css";
-import logoIcon from "@/assets/icons/logo.svg";
-import Image from "next/image";
-import { IVolunteer, IBonus, IBonusHistoryItem } from "@/models/volunteer";
 import { useMemo, useState } from "react";
 import { VOLUNTEERS } from "@/data/volunteers";
 import { Bonus } from "@/components/Bonus/Bonus";
@@ -16,27 +13,27 @@ import { getHeaderProps } from "@/data/header";
 import { baseUrl } from "@/data/url";
 
 const transformVolunteersToBonuses = (
-  volunteers: IVolunteer[]
+  volunteers: any[]
 ): Array<{
-  bonus: IBonus;
+  bonus: any;
   assignments: {
-    historyItem: IBonusHistoryItem;
-    volunteer: IVolunteer;
+    historyItem: any;
+    volunteer: any;
   }[];
 }> => {
   const bonusMap = new Map<
     string,
     {
-      bonus: IBonus;
+      bonus: any;
       assignments: {
-        historyItem: IBonusHistoryItem;
-        volunteer: IVolunteer;
+        historyItem: any;
+        volunteer: any;
       }[];
     }
   >();
 
   volunteers.forEach((volunteer) => {
-    volunteer.history.forEach((historyItem) => {
+    volunteer.history.forEach((historyItem: any) => {
       const bonusKey = historyItem.bonus.id;
 
       if (!bonusMap.has(bonusKey)) {

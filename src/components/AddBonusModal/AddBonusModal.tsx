@@ -12,12 +12,11 @@ import {
   InputLabel,
   Select,
 } from "@mui/material";
-import { IVolunteer } from "@/models/volunteer";
 
 interface IFormData {
   category: string;
   assignedCount: string;
-  additionalAssignments: IVolunteer[];
+  additionalAssignments: any[];
   title: string;
   description: string;
 }
@@ -29,7 +28,7 @@ const categories = [
 ];
 
 interface IAddBonusModalProps {
-  volunteers: IVolunteer[];
+  volunteers: any[];
   open: boolean;
   onClose: () => void;
 }

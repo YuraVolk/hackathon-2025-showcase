@@ -13,13 +13,12 @@ import {
 import emptyAvatarSrc from "@/assets/icons/empty-avatar.svg";
 import arrowDownSrc from "@/assets/icons/icon-bottom.svg";
 import classes from "./Bonus.module.css";
-import { IBonus, IBonusHistoryItem, IVolunteer } from "@/models/volunteer";
 
 export interface IBonusWithVolunteers {
-  bonus: IBonus;
+  bonus: any;
   assignments: {
-    historyItem: IBonusHistoryItem;
-    volunteer: IVolunteer;
+    historyItem: any;
+    volunteer: any;
   }[];
 }
 
