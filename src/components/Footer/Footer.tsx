@@ -47,11 +47,6 @@ export const Footer = memo(() => {
                 О нас
               </Link>
             </li>
-            <li className={styles.linkItem}>
-              <Link href="/faq" className={styles.link}>
-                FAQ
-              </Link>
-            </li>
           </ul>
         </div>
         <div className={styles.footerSection}>

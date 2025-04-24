@@ -3,6 +3,7 @@ import { GetServerSideProps } from "next";
 import { getCookie } from "cookies-next";
 import { Layout } from "@/components/Layout/Layout";
 import { getHeaderProps } from "@/data/header";
+import { baseUrl } from "@/data/url";
 
 export default function Home({ role, token }: { role: string; token: string }) {
   return (
@@ -62,7 +63,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       await getCookie("token", { req: context.req, res: context.res })
     );
 
-    const userInfo = await fetch("http://localhost:3000/api/user_info", {
+    const userInfo = await fetch(`${baseUrl}/api/user_info`, {
       headers: {
         token,
       },

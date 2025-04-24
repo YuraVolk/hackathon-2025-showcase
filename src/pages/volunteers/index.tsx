@@ -12,6 +12,7 @@ import { GetServerSideProps } from "next";
 import { getCookie } from "cookies-next";
 import { getHeaderProps } from "@/data/header";
 import { Volonter } from "@/models/volunteer";
+import { baseUrl } from "@/data/url";
 dayjs.extend(customParseFormat);
 
 export default function VolunteersPage({
@@ -99,19 +100,16 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       await getCookie("token", { req: context.req, res: context.res })
     );
 
-    const userInfo = await fetch("http://localhost:3000/api/user_info", {
+    const userInfo = await fetch(`${baseUrl}/api/user_info`, {
       headers: {
         token,
       },
     }).then((response) => response.json());
-    const allVolonters = await fetch(
-      "http://localhost:3000/api/all_volonters",
-      {
-        headers: {
-          token,
-        },
-      }
-    ).then((response) => response.json());
+    const allVolonters = await fetch(`${baseUrl}/api/all_volonters`, {
+      headers: {
+        token,
+      },
+    }).then((response) => response.json());
 
     return {
       props: {

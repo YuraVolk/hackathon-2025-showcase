@@ -6,6 +6,7 @@ import { getCookie } from "cookies-next";
 import { GetServerSideProps } from "next";
 import { NachBonus } from "@/models/volunteer";
 import { getHeaderProps } from "@/data/header";
+import { baseUrl } from "@/data/url";
 
 export default function MyPartnersPage({
   bonuses,
@@ -50,12 +51,12 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       await getCookie("token", { req: context.req, res: context.res })
     );
 
-    const userInfo = await fetch("http://localhost:3000/api/user_info", {
+    const userInfo = await fetch(`${baseUrl}/api/user_info`, {
       headers: {
         token,
       },
     }).then((response) => response.json());
-    const bonuses = await fetch("http://localhost:3000/api/bonuses_volonter", {
+    const bonuses = await fetch(`${baseUrl}/api/bonuses_volonter`, {
       method: "POST",
       headers: {
         token,
