@@ -26,6 +26,29 @@ export interface IFiltersProps {
   setMaxBirthDate: Dispatch<SetStateAction<Dayjs | null>>;
 }
 
+const textFieldStyles = {
+  "& fieldset": {
+    borderColor: "#1e3a8a !important",
+    transition: "all 50ms ease",
+  },
+  "&:hover fieldset": {
+    borderColor: "#1e3a8a !important",
+    borderWidth: "2px !important",
+    transition: "all 50ms ease",
+  },
+  "&.Mui-focused fieldset": {
+    borderColor: "#1e3a8a !important",
+    borderWidth: "2px !important",
+    transition: "all 50ms ease",
+  },
+  "& .MuiInputLabel-root": {
+    color: "#1e3a8a",
+  },
+  "& .MuiInputLabel-root.Mui-focused": {
+    color: "#1e3a8a",
+  },
+};
+
 export const Filters = memo(
   ({
     achievementTypes,
@@ -59,33 +82,76 @@ export const Filters = memo(
             <TextField
               {...params}
               label="Достижения"
-              placeholder="Достижения..."
+              placeholder="Выберите достижения..."
+              sx={textFieldStyles}
             />
           )}
+          sx={{
+            "& .MuiChip-root": {
+              backgroundColor: "#1e3a8a",
+              color: "white",
+            },
+            "& .MuiChip-deleteIcon *": {
+              fill: "white",
+            },
+          }}
         />
         <div className={classes.filters_row}>
           <DatePicker
-            slotProps={{ field: { clearable: true } }}
+            slotProps={{
+              field: { clearable: true },
+              textField: {
+                sx: textFieldStyles,
+              },
+            }}
             className={classes.filters_input}
             label="Минимальная дата рождения"
             value={minBirthDate}
             onChange={(newValue) => setMinBirthDate(newValue)}
           />
           <DatePicker
-            slotProps={{ field: { clearable: true } }}
+            slotProps={{
+              field: { clearable: true },
+              textField: {
+                sx: textFieldStyles,
+              },
+            }}
             className={classes.filters_input}
             label="Максимальная дата рождения"
             value={maxBirthDate}
             onChange={(newValue) => setMaxBirthDate(newValue)}
           />
           <FormControl className={classes.filters_input}>
-            <InputLabel id="demo-simple-select-label">Сортировка</InputLabel>
+            <InputLabel
+              id="sorting-select-label"
+              sx={{
+                color: "#1e3a8a",
+                "&.Mui-focused": {
+                  color: "#1e3a8a",
+                },
+              }}
+            >
+              Сортировка
+            </InputLabel>
             <Select
-              labelId="demo-simple-select-label"
-              id="demo-simple-select"
+              labelId="sorting-select-label"
+              id="sorting-select"
               value={sorting}
               label="Сортировка"
               onChange={handleChangeSorting}
+              sx={{
+                "& .MuiOutlinedInput-notchedOutline": {
+                  borderColor: "#1e3a8a",
+                },
+                "&:hover .MuiOutlinedInput-notchedOutline": {
+                  borderColor: "#1e3a8a",
+                  borderWidth: "2px",
+                },
+                "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                  borderColor: "#1e3a8a",
+                  borderWidth: "2px",
+                },
+              }}
             >
               <MenuItem value={Sorting.ByAchievementsAscending}>
                 {Sorting.ByAchievementsAscending}

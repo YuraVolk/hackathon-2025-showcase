@@ -1,8 +1,6 @@
 import Image from "next/image";
-
 import styles from "./styles.module.css";
-import logoIcon from "../../assets/icons/logo.svg";
-
+import logoIcon from "@/assets/icons/logo.svg";
 import { Volunteer } from "@/components/Volunteer/Volunteer";
 import { VOLUNTEERS } from "@/data/volunteers";
 import { Filters } from "@/components/Filters/Filters";
@@ -14,7 +12,7 @@ import customParseFormat from "dayjs/plugin/customParseFormat";
 import { Typography } from "@mui/material";
 dayjs.extend(customParseFormat);
 
-const VolunteersPage = () => {
+export default function VolunteersPage() {
   const [achievements, setAchievements] = useState<string[]>([]);
   const [sorting, setSorting] = useState(Sorting.ByAchievementsAscending);
   const [minBirthDate, setMinBirthDate] = useState<Dayjs | null>(null);
@@ -84,7 +82,9 @@ const VolunteersPage = () => {
         ],
       }}
     >
-      <Typography variant="h4" component="h1">Список волонтеров</Typography>
+      <Typography variant="h4" component="h1">
+        Список волонтеров
+      </Typography>
       <Filters
         achievementTypes={achievementTypes}
         achievements={achievements}
@@ -99,12 +99,10 @@ const VolunteersPage = () => {
       <ul className={styles.volunteers}>
         {filteredVolunteers.map((volunteer) => (
           <li key={volunteer.id}>
-            <Volunteer volunteer={volunteer} />
+            <Volunteer showPersonalData={false} volunteer={volunteer} />
           </li>
         ))}
       </ul>
     </Layout>
   );
-};
-
-export default VolunteersPage;
+}

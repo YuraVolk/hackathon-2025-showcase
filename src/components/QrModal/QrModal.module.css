@@ -1,0 +1,65 @@
+.dialog {
+  border-radius: 16px !important;
+}
+
+.qrContainer {
+  padding: 24px;
+  text-align: center;
+  max-width: 300px;
+}
+
+.qrTitle {
+  font-size: 20px;
+  color: #1e293b;
+  margin: 0 0 8px 0;
+}
+
+.qrSubtitle {
+  font-size: 16px;
+  color: #1e3a8a;
+  margin: 0 0 16px 0;
+  font-weight: 500;
+}
+
+.qrCode {
+  background: #f8fafc;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 16px;
+}
+
+.qrPlaceholder {
+  width: 200px;
+  height: 200px;
+  margin: 0 auto;
+  background: #e2e8f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #64748b;
+  font-weight: 500;
+}
+
+.qrInfo {
+  font-size: 14px;
+  color: #475569;
+  margin: 0 0 16px 0;
+  line-height: 1.5;
+}
+
+.closeButton {
+  background-color: #1e3a8a;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 24px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  width: 100%;
+  transition: background-color 0.2s;
+}
+
+.closeButton:hover {
+  background-color: #153060;
+}

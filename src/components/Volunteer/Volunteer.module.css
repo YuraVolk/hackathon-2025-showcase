@@ -1,93 +1,166 @@
 .volunteer {
   display: flex;
   flex-direction: column;
-  background: linear-gradient(#fff, #f6f6f6) !important;
-  border-radius: 16px !important;
-  box-shadow: 3px 6px 4px -5px rgba(0, 0, 0, 0.25);
-  gap: 12px;
+  background: linear-gradient(to bottom, #ffffff, #f8fafc) !important;
+  border-radius: 12px !important;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 2px 8px rgba(30, 58, 138, 0.1);
+  transition: all 0.3s ease !important;
+}
+
+.volunteer:hover {
+  box-shadow: 0 4px 12px rgba(30, 58, 138, 0.15);
 }
 
 .volunteer_summary {
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding: 0;
+  gap: 16px;
+  padding: 16px !important;
   min-height: auto !important;
 }
 
 .volunteer_summary .MuiAccordionSummary-content {
   display: flex;
   align-items: center;
-  gap: 12px;
-  margin: 0;
+  gap: 16px;
+  margin: 0 !important;
+}
+
+.avatarWrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
 }
 
 .volunteer_image {
-  width: 48px;
-  height: 48px;
-  flex-shrink: 0;
-  margin-right: 12px;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  padding: 2px;
+  margin-right: 8px;
+}
+
+.codeChip {
+  background-color: #1e3a8a !important;
+  color: white !important;
+  font-size: 0.7rem;
+  cursor: pointer;
+}
+
+.codeChip svg {
+  fill: #fff;
+}
+
+.codeChip:hover {
+  background-color: #1d4ed8 !important;
 }
 
 .volunteer_description {
-  flex: 1 1 0;
+  flex: 1;
 }
 
 .volunteer_description_name {
-  display: block;
-  font-size: 16px;
-  line-height: 24px;
-  color: #2d2d2d;
+  font-weight: 600;
+  color: #1e293b;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
-.volunteer_description_name_highlighted {
-  opacity: 0.5;
+.volunteer_description_phone {
+  font-weight: 400;
+  color: #64748b;
+  font-size: 0.9rem;
 }
 
 .volunteer_description_achievements {
-  display: block;
-  font-size: 14px;
-  line-height: 18px;
-  color: #2d2d2d;
+  color: #475569;
+  margin-top: 4px;
 }
 
 .volunteer_details {
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  padding: 0 0 0 60px;
+  gap: 12px;
+  padding: 0 16px 16px 80px !important;
+  border-top: 1px solid #e2e8f0;
 }
 
 .volunteer_info_item {
   display: flex;
   gap: 8px;
+  align-items: baseline;
 }
 
-.volunteer_info_item span:first-child {
-  font-weight: bold;
+.infoLabel {
+  font-weight: 600;
+  color: #1e3a8a;
+  min-width: 120px;
 }
 
 .volunteer_bonuses {
   margin-top: 12px;
 }
 
-.volunteer_bonuses h4 {
-  margin: 8px 0;
+.bonusTitle {
+  color: #1e3a8a;
+  font-weight: 600;
+  margin-bottom: 8px;
 }
 
 .volunteer_bonus_item {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 8px 0;
-  border-bottom: 1px solid #eee;
+  padding: 10px 0;
+  border-bottom: 1px solid #f1f5f9;
 }
 
 .volunteer_bonus_info {
   display: flex;
-  gap: 12px;
+  gap: 16px;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
-.volunteer_bonus_info span:first-child {
-  font-weight: bold;
+.bonusName {
+  font-weight: 600;
+  color: #1e293b;
+}
+
+.bonusOrg {
+  color: #475569;
+}
+
+.bonusDate {
+  color: #64748b;
+}
+
+.arrowIcon {
+  transition: transform 0.3s ease;
+}
+
+.volunteer_summary.Mui-expanded .arrowIcon {
+  transform: rotate(180deg);
+}
+
+@media (max-width: 768px) {
+  .volunteer_summary {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .volunteer_details {
+    padding-left: 16px !important;
+  }
+
+  .volunteer_bonus_info {
+    gap: 8px;
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }

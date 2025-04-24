@@ -1,5 +1,13 @@
 .layout {
+  flex-grow: 1;
+  width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 12px;
+  padding: 36px 12px 12px;
+}
+
+.layout_root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }

@@ -1,102 +1,172 @@
 .bonus {
-  background: linear-gradient(#fff, #f6f6f6) !important;
-  border-radius: 8px !important;
-  box-shadow: 3px 6px 4px -5px rgba(0, 0, 0, 0.25);
+  background: white;
+  border-radius: 12px !important;
+  box-shadow: 0 2px 16px rgba(30, 58, 138, 0.08) !important;
+  margin-bottom: 16px;
+  transition: all 0.2s ease !important;
 }
 
-.bonus_summary {
-  padding: 0;
-  min-height: auto !important;
+.bonus:hover {
+  box-shadow: 0 4px 20px rgba(30, 58, 138, 0.12) !important;
 }
 
-.bonus_summary .MuiAccordionSummary-content {
-  margin: 0;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+.summary {
+  padding: 16px 20px !important;
+}
+
+.summaryContent {
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
-.bonus_info {
+.bonusHeader {
   display: flex;
-  align-items: center;
+  justify-content: space-between;
+  align-items: flex-start;
   gap: 12px;
 }
 
-.bonus_name {
+.bonusName {
+  font-weight: 600;
+  color: #1e293b;
   margin: 0;
-  font-size: 16px;
-  color: #2d2d2d;
+  flex: 1;
 }
 
-.bonus_organization {
-  opacity: 0.7;
-  font-size: 14px;
+.stats {
+  display: flex;
 }
 
-.bonus_details {
-  padding: 16px 0 0 0;
+.chip {
+  background-color: #f1f5f9;
+  color: #475569;
+  font-size: 0.75rem;
+  height: 24px;
+}
+
+.activeChip {
+  background-color: #1e3a8a !important;
+  color: white !important;
+}
+
+.orgName {
+  color: #64748b;
+  font-size: 0.875rem;
+}
+
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.date,
+.descPreview {
+  color: #94a3b8;
+  font-size: 0.75rem;
+}
+
+.descPreview {
+  max-width: 400px;
+}
+
+.details {
+  padding: 0 20px 16px !important;
   display: flex;
   flex-direction: column;
   gap: 16px;
 }
 
-.bonus_description {
-  padding: 8px 0;
-  border-bottom: 1px solid #eee;
-  font-size: 14px;
-  color: #2d2d2d;
+.description {
+  color: #475569;
+  font-size: 0.875rem;
+  line-height: 1.5;
 }
 
-.assigned_volunteers_title {
-  margin: 8px 0;
-  font-size: 15px;
-  color: #2d2d2d;
+.divider {
+  border-color: #f1f5f9;
+  margin: 4px 0;
 }
 
-.volunteers_list {
-  display: flex;
-  flex-direction: column;
+.volunteersTitle {
+  color: #334155;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.volunteersGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 12px;
+  max-height: 400px;
+  overflow-y: auto;
+  padding-right: 8px;
 }
 
-.volunteer {
+.volunteerCard {
   display: flex;
   align-items: center;
   gap: 12px;
-  padding: 8px;
-  background-color: #f9f9f9;
-  border-radius: 4px;
+  padding: 12px;
+  background: #f8fafc;
+  border-radius: 8px;
 }
 
-.volunteer_image {
-  width: 40px;
-  height: 40px;
-  flex-shrink: 0;
+.avatar {
+  border-radius: 6px;
 }
 
-.volunteer_info {
+.volunteerInfo {
   flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
+  min-width: 0;
 }
 
-.volunteer_name {
-  font-size: 14px;
+.volunteerName {
   font-weight: 500;
+  color: #1e293b;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-.volunteer_contact {
-  opacity: 0.6;
-  margin-left: 6px;
-  font-size: 13px;
-}
-
-.assignment_info {
+.volunteerMeta {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 12px;
-  color: #666;
+  margin-top: 2px;
+}
+
+.phone {
+  color: #64748b;
+}
+
+.arrowIcon {
+  transition: transform 0.2s ease;
+}
+
+.bonus.Mui-expanded .arrowIcon {
+  transform: rotate(180deg);
+}
+
+@media (max-width: 768px) {
+  .volunteersGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .bonusHeader {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .meta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  .descPreview {
+    max-width: 100%;
+  }
 }
