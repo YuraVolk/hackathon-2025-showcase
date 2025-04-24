@@ -74,6 +74,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   } catch (error) {
     return {
       props: {
+        message: String(error),
         role: "",
         token: "",
         bonuses: [],
