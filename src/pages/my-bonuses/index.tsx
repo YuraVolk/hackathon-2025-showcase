@@ -43,7 +43,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     );
 
     const userInfo = await fetch(
-      `http://hyper-ist.mooo.com:3000/user_info`,
+      `https://volunteers-backend.onrender.com/user_info`,
       {
         headers: {
           token,
@@ -51,7 +51,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       }
     ).then((response) => response.json());
     const bonuses = await fetch(
-      `http://hyper-ist.mooo.com:3000/bonuses_volonter`,
+      `https://volunteers-backend.onrender.com/bonuses_volonter`,
       {
         method: "POST",
         headers: {

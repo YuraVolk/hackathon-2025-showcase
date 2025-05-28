@@ -64,7 +64,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     );
 
     const userInfo = await fetch(
-      `http://hyper-ist.mooo.com:3000/user_info`,
+      `https://volunteers-backend.onrender.com/user_info`,
       {
         headers: {
           token,

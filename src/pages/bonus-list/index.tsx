@@ -107,7 +107,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       await getCookie("token", { req: context.req, res: context.res })
     );
 
-    const userInfo = await fetch(`http://hyper-ist.mooo.com:3000/user_info`, {
+    const userInfo = await fetch(`https://volunteers-backend.onrender.com/user_info`, {
       headers: {
         token,
       },
