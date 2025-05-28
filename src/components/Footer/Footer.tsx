@@ -12,14 +12,14 @@ export const Footer = memo(() => {
     <footer className={styles.footer}>
       <div className={styles.footerContainer}>
         <div className={styles.footerSection}>
-          <strong className={styles.footerTitle}>О проекте</strong>
+          <h2 className={styles.footerTitle}>О проекте</h2>
           <p className={styles.footerText}>
             Платформа для волонтеров и партнеров, созданная чтобы объединять
             людей и делать добрые дела вместе.
           </p>
         </div>
         <div className={styles.footerSection}>
-          <h3 className={styles.footerTitle}>Контакты</h3>
+          <h2 className={styles.footerTitle}>Контакты</h2>
           <ul className={styles.contactList}>
             <li className={styles.contactItem}>
               <span className={styles.contactLabel}>Телефон:</span>
@@ -40,7 +40,7 @@ export const Footer = memo(() => {
           </ul>
         </div>
         <div className={styles.footerSection}>
-          <strong className={styles.footerTitle}>Ресурсы</strong>
+          <h2 className={styles.footerTitle}>Ресурсы</h2>
           <ul className={styles.linkList}>
             <li className={styles.linkItem}>
               <Link href="/" className={styles.link}>
@@ -50,7 +50,7 @@ export const Footer = memo(() => {
           </ul>
         </div>
         <div className={styles.footerSection}>
-          <h3 className={styles.footerTitle}>Мы в соцсетях</h3>
+          <h2 className={styles.footerTitle}>Мы в соцсетях</h2>
           <div className={styles.socialLinks}>
             <a href="#" className={styles.socialLink} aria-label="Почта">
               <AlternateEmailIcon style={{ fontSize: 24 }} />
