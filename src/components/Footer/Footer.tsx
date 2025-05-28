@@ -12,7 +12,7 @@ export const Footer = memo(() => {
     <footer className={styles.footer}>
       <div className={styles.footerContainer}>
         <div className={styles.footerSection}>
-          <h3 className={styles.footerTitle}>О проекте</h3>
+          <strong className={styles.footerTitle}>О проекте</strong>
           <p className={styles.footerText}>
             Платформа для волонтеров и партнеров, созданная чтобы объединять
             людей и делать добрые дела вместе.
@@ -40,7 +40,7 @@ export const Footer = memo(() => {
           </ul>
         </div>
         <div className={styles.footerSection}>
-          <h3 className={styles.footerTitle}>Ресурсы</h3>
+          <strong className={styles.footerTitle}>Ресурсы</strong>
           <ul className={styles.linkList}>
             <li className={styles.linkItem}>
               <Link href="/" className={styles.link}>
@@ -52,13 +52,13 @@ export const Footer = memo(() => {
         <div className={styles.footerSection}>
           <h3 className={styles.footerTitle}>Мы в соцсетях</h3>
           <div className={styles.socialLinks}>
-            <a href="#" className={styles.socialLink}>
+            <a href="#" className={styles.socialLink} aria-label="Почта">
               <AlternateEmailIcon style={{ fontSize: 24 }} />
             </a>
-            <a href="#" className={styles.socialLink}>
+            <a href="#" className={styles.socialLink} aria-label="Telegram">
               <TelegramIcon style={{ fontSize: 24 }} />
             </a>
-            <a href="#" className={styles.socialLink}>
+            <a href="#" className={styles.socialLink} aria-label="YouTube">
               <YouTubeIcon style={{ fontSize: 24 }} />
             </a>
           </div>

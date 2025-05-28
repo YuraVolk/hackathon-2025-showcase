@@ -55,6 +55,7 @@ export const Header = memo(
             <IconButton
               className={styles.mobileMenuButton}
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              aria-label="Меню навигации"
             >
               <MenuIcon />
             </IconButton>
